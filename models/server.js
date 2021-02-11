@@ -1,5 +1,6 @@
 const express=require('express');
 const cors=require('cors');
+const { dbConnection } = require('../database/config');
 
 class Server{
     constructor(){
@@ -8,10 +9,17 @@ class Server{
         //midlewares //agregan funcionalidad// se ejecutan al iniciar el servidor
         this.usuariosPruebaRoutePath='/api/usuariosprueba';
 
+        //conectar a bd
+        this.conectarDB();
+
         this.middlewares();
 
         //ruts de la app
         this.routes();
+    }
+
+    async conectarDB(){
+        await dbConnection()
     }
 
     middlewares(){
