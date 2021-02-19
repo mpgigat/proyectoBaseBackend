@@ -1,13 +1,34 @@
-const express=require('express');
-const cors=require('cors');
-const { dbConnection } = require('../database/config');
+//const express=require('express');
+import  express from 'express'
+//const cors=require('cors');
+import cors from 'cors'
+//const { dbConnection } = require('../database/config');
+import {dbConnection} from '../database/config.js';
+
+//rutas
+import usuarioPrueba from '../routes/usuariosPrueba.js' ;
+import categoria from '../routes/categoria.js'
+import articulo from "../routes/articulo.js";
+import usuario from '../routes/usuario.js'
+import auth from "../routes/auth.js";
+import persona from "../routes/persona.js";
+import ingreso from "../routes/ingreso.js";
+import venta from "../routes/venta.js";
+
 
 class Server{
     constructor(){
         this.app=express();
         this.port=process.env.PORT;
         //midlewares //agregan funcionalidad// se ejecutan al iniciar el servidor
-        this.usuariosPruebaRoutePath='/api/usuariosprueba';
+        this.usuariosRoutePath= '/api/usuariosprueba';
+        this.categoriaPath=     '/api/categoria';
+        this.articuloPath=      '/api/articulo';
+        this.usuarioPath=       '/api/usuario';
+        this.authPath=          '/api/auth'
+        this.personaPath=       '/api/persona'
+        this.ingresoPath=       '/api/ingreso'
+        this.ventaPath=       '/api/venta'
 
         //conectar a bd
         this.conectarDB();
@@ -32,7 +53,15 @@ class Server{
     }
 
     routes(){
-        this.app.use(this.usuariosPruebaRoutePath,require('../routes/usuariosPrueba'));
+        //this.app.use(this.usuariosPruebaRoutePath,require('../routes/usuarios'));
+        this.app.use(this.usuariosRoutePath,usuarioPrueba);
+        this.app.use(this.categoriaPath,categoria);
+        this.app.use(this.articuloPath,articulo);
+        this.app.use(this.usuarioPath,usuario);
+        this.app.use(this.authPath,auth);
+        this.app.use(this.personaPath,persona);
+        this.app.use(this.ingresoPath,ingreso);
+        this.app.use(this.ventaPath,venta);
     }
 
     listen(){
@@ -42,4 +71,5 @@ class Server{
     }
 }
 
-module.exports=Server;
+//module.exports=Server;
+export {Server}

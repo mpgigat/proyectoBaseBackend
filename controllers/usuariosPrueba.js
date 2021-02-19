@@ -1,6 +1,10 @@
-const {response,request}=require('express');
-const bcryptjs=require('bcryptjs')
-const Usuarioprueba =require('../models/usuarioprueba')
+// const {response,request}=require('express');
+// const bcryptjs=require('bcryptjs')
+// const Usuarioprueba =require('../models/usuarioprueba')
+
+import {response,request} from 'express';
+import bcryptjs from 'bcryptjs'
+import Usuarioprueba from '../models/usuarioprueba.js'
 
 const usuariosPruebaGet = async (req, res=response) => {//para obtener algo de tipado
     //const {param1,param2='por si no viene',page=1}=req.query;   //direcion?param1&param2
@@ -73,4 +77,4 @@ const usuariosPruebaDelete= async (req, res) => {
 }
 
 
-module.exports={usuariosPruebaGet,usuariosPruebaPost,usuariosPruebaPut,usuariosPruebaDelete}
+export {usuariosPruebaGet,usuariosPruebaPost,usuariosPruebaPut,usuariosPruebaDelete}

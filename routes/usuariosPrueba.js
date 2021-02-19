@@ -1,14 +1,20 @@
-const {Router} = require('express');
+//const {Router} = require('express');
+import {Router} from 'express'
+//const {usuariosPruebaGet,usuariosPruebaPost,usuariosPruebaPut,usuariosPruebaDelete}=require('../controllers/usuariosPrueba');
+import {usuariosPruebaGet,usuariosPruebaPost,usuariosPruebaPut,usuariosPruebaDelete} from '../controllers/usuariosPrueba.js';
+// const {check}=require('express-validator');
+// const { validarCampos } = require('../middlewares/validar-campos');
+// const { esRolValido,emailExiste, existeUsuarioPorId } = require('../helpers/db-validators');
+import {check} from 'express-validator';
+import { validarCampos } from '../middlewares/validar-campos.js';
+import { esRolValido,emailExiste, existeUsuarioPorId } from '../helpers/db-validator-usuariosprueba.js';
 
-const {usuariosPruebaGet,usuariosPruebaPost,usuariosPruebaPut,usuariosPruebaDelete}=require('../controllers/usuariosPrueba');
-const {check}=require('express-validator');
-const { validarCampos } = require('../middlewares/validar-campos');
-const { esRolValido,emailExiste, existeUsuarioPorId } = require('../helpers/db-validators');
 const router=Router();
 
 
 
-router.get('/',             usuariosPruebaGet);
+router.get('/',usuariosPruebaGet);
+
 router.post('/',[    
     check('nombre', 'El nombre es obligatorio!').not().isEmpty(),
     check('password', 'El password debe de ser más de 6 letras').isLength({ min: 6 }),
@@ -32,4 +38,4 @@ router.delete('/:id',[
     validarCampos
 ],usuariosPruebaDelete);
 
-module.exports=router;
+export default router

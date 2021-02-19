@@ -1,6 +1,7 @@
-const {Schema,model}=require('mongoose');
+//const {Schema,model}=require('mongoose');
+import mongoose from 'mongoose';
 
-const UsuariopruebaSchema=Schema({
+const UsuariopruebaSchema=mongoose.Schema({
     nombre:{
         type:String,
         required:[true,'El nombre es obligatorio']
@@ -37,4 +38,5 @@ UsuariopruebaSchema.methods.toJSON=function(){
     return usuario;
 }
 
-module.exports=model('Usuarioprueba',UsuariopruebaSchema);
+//module.exports=model('Usuarioprueba',UsuariopruebaSchema);
+export default mongoose.model('Usuarioprueba',UsuariopruebaSchema);

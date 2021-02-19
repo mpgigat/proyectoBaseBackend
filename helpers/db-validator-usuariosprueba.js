@@ -1,5 +1,8 @@
-const Rol = require('../models/rol');
-const Usuario = require('../models/usuarioprueba');
+// const Rol = require('../models/rol');
+// const Usuario = require('../models/usuarioprueba');
+
+import Rol from '../models/rol.js';
+import Usuario from '../models/usuarioprueba.js';
 
 const esRolValido = async(rol = '') => {
 
@@ -28,7 +31,7 @@ const existeUsuarioPorId = async( id ) => {
 
 
 
-module.exports = {
+export{
     esRolValido,
     emailExiste,
     existeUsuarioPorId
